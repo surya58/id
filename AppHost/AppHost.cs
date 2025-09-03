@@ -3,9 +3,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 var sqlPassword = builder.AddParameter("sql-password", secret: true);
 
 var sqlServer = builder
-        .AddSqlServer("todo-sqlserver", password: sqlPassword, port: 9000)
+        .AddSqlServer("userdetails-sqlserver", password: sqlPassword, port: 9000)
         .WithLifetime(ContainerLifetime.Persistent)
-        .AddDatabase("tododb");
+        .AddDatabase("userdetailsdb");
 
 var migrationService = builder.AddProject<Projects.MigrationService>("migrationservice")
     .WithReference(sqlServer)

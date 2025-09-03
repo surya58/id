@@ -12,8 +12,8 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-// Add database context
-builder.AddSqlServerDbContext<TodoDbContext>("tododb", null,
+// Add database context for user input parsing system
+builder.AddSqlServerDbContext<UserInputDbContext>("userdetailsdb", null,
     optionsBuilder => optionsBuilder.UseSqlServer(options => 
     options.MigrationsAssembly(typeof(Program).Assembly.GetName().Name)));
 
